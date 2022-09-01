@@ -1,0 +1,25 @@
+﻿<Window x:Class="Proj2.ZarządzajAktywamiForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Proj2"
+        mc:Ignorable="d"
+        Title="Zarządzaj Aktywami" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="GridAktywa" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="0,138,0,10" SelectionChanged="GridAktywa_SelectionChanged"/>
+        <Button x:Name="DodajAktywoButton" Content="Dodaj Aktywo" HorizontalAlignment="Left" Margin="143,81,0,0" VerticalAlignment="Top" Width="100" Height="45" Click="DodajAktywoButton_Click"/>
+        <Label x:Name="NazwaAktywaLabel" Content="Nazwa Aktywa" HorizontalAlignment="Left" Margin="31,24,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="KodAktywaLabel" Content="Kod Aktywa" HorizontalAlignment="Left" Margin="31,51,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NazwaAktywaDodajTextBox" HorizontalAlignment="Left" Margin="123,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="KodAktywaDodajTextBox" HorizontalAlignment="Left" Margin="123,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="EdytujAktywoButton" Content="Edytuj Aktywo" HorizontalAlignment="Left" Margin="381,82,0,0" VerticalAlignment="Top" Width="100" Height="45" Click="EdytujAktywoButton_Click"/>
+        <Label x:Name="NazwaAktywaEdytujLabel" Content="Nazwa Aktywa" HorizontalAlignment="Left" Margin="269,24,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="KodAktywaEdytujLabel" Content="Kod Aktywa" HorizontalAlignment="Left" Margin="269,55,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NazwaAktywaEdytujTextBox" HorizontalAlignment="Left" Margin="361,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.608,2.452"/>
+        <Button x:Name="UsunAktywoButton" Content="Usuń Aktywo" HorizontalAlignment="Left" Margin="517,82,0,0" VerticalAlignment="Top" Width="100" Height="45" Click="UsunAktywoButton_Click"/>
+        <Button x:Name="ZaładujAktywaButton" Content="Załaduj Aktywa" HorizontalAlignment="Left" Margin="656,82,0,0" VerticalAlignment="Top" Width="100" Height="45" Click="ZaładujAktywaButton_Click"/>
+        <TextBox x:Name="KodAktywaEdytujTextBox" HorizontalAlignment="Left" Margin="361,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
