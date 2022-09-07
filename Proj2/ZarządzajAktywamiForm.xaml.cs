@@ -1,6 +1,7 @@
 ﻿using Proj2.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Proj2
             InitializeComponent();
 
             MyDbContext db = new MyDbContext();
-
+           
             //var aktywa = from d in db.Aktywas select new {id=d.Idaktywa,nazwa=d.NazwaAktywa,kod=d.KodAktywa};
             this.GridAktywa.ItemsSource = db.Aktywas.ToList();
         }
@@ -100,6 +101,8 @@ namespace Proj2
             }
             db.SaveChanges();
             this.GridAktywa.ItemsSource = db.Aktywas.ToList();
+            NazwaAktywaEdytujTextBox.Clear();
+            KodAktywaEdytujTextBox.Clear();
         }
     }
 }

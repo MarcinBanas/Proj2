@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Zarządzaj Aktywami" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="GridAktywa" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="0,138,0,10" SelectionChanged="GridAktywa_SelectionChanged"/>
+        <DataGrid x:Name="GridAktywa" d:ItemsSource="{d:SampleData ItemCount=2}" Margin="0,138,0,10" SelectionChanged="GridAktywa_SelectionChanged" CanUserAddRows="False"/>
         <Button x:Name="DodajAktywoButton" Content="Dodaj Aktywo" HorizontalAlignment="Left" Margin="143,81,0,0" VerticalAlignment="Top" Width="100" Height="45" Click="DodajAktywoButton_Click"/>
         <Label x:Name="NazwaAktywaLabel" Content="Nazwa Aktywa" HorizontalAlignment="Left" Margin="31,24,0,0" VerticalAlignment="Top"/>
         <Label x:Name="KodAktywaLabel" Content="Kod Aktywa" HorizontalAlignment="Left" Margin="31,51,0,0" VerticalAlignment="Top"/>

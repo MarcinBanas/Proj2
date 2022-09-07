@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proj2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,27 @@ namespace Proj2
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
+            MyDbContext db = new MyDbContext();
             InitializeComponent();
+            var query = (from k in db.Aktywas
+                        join d  in db.Notowania on k.Idaktywa equals d.Idaktywa
+                        select new 
+                        {
+                            ID=k.Idaktywa,
+                            NazwaAktywa=k.NazwaAktywa,
+                            AktualnaCena=d.CenaMax,
+                            DataNotowania=d.DataIgodzina
+                        }
+                        into ss
+                        group ss by ss.ID into g
+                        select g.OrderByDescending(r => r.DataNotowania).FirstOrDefault()
+                        ).ToList();
+       
+            this.DataGridMain.ItemsSource = query;
+            
         }
 
         

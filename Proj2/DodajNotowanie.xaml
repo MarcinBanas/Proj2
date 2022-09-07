@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Proj2"
         mc:Ignorable="d"
         Title="Dodaj Notowanie" Height="650" Width="800">
+    <Window.Resources>
+        <local:MultiValueConverter x:Key="MultiValueConverter" />
+    </Window.Resources>
     <Grid>
         <ListView x:Name="AktywaListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,162,0,10" BorderBrush="Black" HorizontalAlignment="Left" Width="144" Grid.ColumnSpan="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutomationProperties.IsColumnHeader="True" SelectionChanged="AktywaListView_SelectionChanged">
             <ListView.View>
@@ -15,18 +18,28 @@
             </ListView.View>
         </ListView>
         <Label x:Name="ListViewLabel" Content="Aktywa" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top"/>
-        <DataGrid x:Name="GridNotowania" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="159,162,5,10"/>
-        <TextBox x:Name="CenaOtwarciaTextBoxDodaj" HorizontalAlignment="Left" Margin="159,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CenaZamknieciaTextBoxDodaj" HorizontalAlignment="Left" Margin="284,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="DataGodzinaTextBoxDodaj" HorizontalAlignment="Left" Margin="409,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CenaMinTextBoxDodaj" HorizontalAlignment="Left" Margin="534,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.629"/>
-        <TextBox x:Name="CenaMaxTextBoxDodaj" HorizontalAlignment="Left" Margin="659,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="GridNotowania" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="159,162,5,10" SelectionChanged="GridNotowania_SelectionChanged" CanUserAddRows="False"/>
+        <TextBox x:Name="CenaOtwarciaTextBoxDodaj" Text="{Binding TextOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="159,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CenaZamknieciaTextBoxDodaj" Text="{Binding TextTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="284,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="DataGodzinaTextBoxDodaj" Text="{Binding TextThree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="409,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CenaMinTextBoxDodaj" Text="{Binding TextFour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="534,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CenaMaxTextBoxDodaj" Text="{Binding TextFive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="659,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="CenaOtwarciaLabel" Content="Cena Otwarcia" HorizontalAlignment="Left" Margin="159,11,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CenaZamknieciaLabel" Content="Cena Zamknięcia" HorizontalAlignment="Left" Margin="284,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="DataGodzinaLabel" Content="Data i Godzina" HorizontalAlignment="Left" Margin="409,11,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CenaMinLabel" Content="Cena Minimalna" HorizontalAlignment="Left" Margin="534,11,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CenaMaxLabel" Content="Cena Maksymalna" HorizontalAlignment="Left" Margin="659,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="DodajNotowanieButton" Content="Dodaj Notowanie" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" Click="DodajNotowanieButton_Click"/>
+        <Button x:Name="DodajNotowanieButton" Content="Dodaj Notowanie" HorizontalAlignment="Left" Margin="34,16,0,0" VerticalAlignment="Top" Click="DodajNotowanieButton_Click">
+                <Button.IsEnabled>
+            <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                <Binding Path="TextOne" />
+                <Binding Path="TextTwo" />
+                <Binding Path="TextThree" />
+                <Binding Path="TextFour" />
+                <Binding Path="TextFive" />
+             </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
         <TextBox x:Name="CenaOtwarciaTextBoxEdytuj" HorizontalAlignment="Left" Margin="159,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="CenaZamknieciaTextBoxEdytuj" HorizontalAlignment="Left" Margin="284,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="DataGodzinaTextBoxEdytuj" HorizontalAlignment="Left" Margin="409,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -37,8 +50,8 @@
         <Label x:Name="DataGodzinaLabelEdytuj" Content="Data i Godzina" HorizontalAlignment="Left" Margin="409,69,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CenaMinLabelEdytuj" Content="Cena Minimalna" HorizontalAlignment="Left" Margin="534,69,0,0" VerticalAlignment="Top"/>
         <Label x:Name="CenaMaxLabelEdytuj" Content="Cena Maksymalna" HorizontalAlignment="Left" Margin="659,69,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="EdytujNotowanieButton" Content="Edytuj Notowanie" HorizontalAlignment="Left" Margin="34,46,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="UsunNotowanieButton" Content="Usuń Notowanie" HorizontalAlignment="Left" Margin="34,75,0,0" VerticalAlignment="Top" Width="98"/>
+        <Button x:Name="EdytujNotowanieButton" Content="Edytuj Notowanie" HorizontalAlignment="Left" Margin="34,46,0,0" VerticalAlignment="Top" Click="EdytujNotowanieButton_Click"/>
+        <Button x:Name="UsunNotowanieButton" Content="Usuń Notowanie" HorizontalAlignment="Left" Margin="34,75,0,0" VerticalAlignment="Top" Width="98" Click="UsunNotowanieButton_Click"/>
 
     </Grid>
 </Window>
