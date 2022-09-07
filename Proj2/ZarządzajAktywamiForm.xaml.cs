@@ -59,8 +59,9 @@ namespace Proj2
             var r = from b in db.Aktywas
                     where b.Idaktywa == this.dID
                     select b;
-
-            Aktywa obj = r.SingleOrDefault();
+            
+           
+            Aktywa obj = r.FirstOrDefault();
             if (obj != null)
             {
                 db.Remove(obj);

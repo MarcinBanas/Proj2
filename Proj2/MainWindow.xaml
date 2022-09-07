@@ -10,6 +10,7 @@
         <Button x:Name="ZarządzajAktywami" Content="Zarządzaj Aktywami" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="ZarządzajAktywamiOpenWindow"/>
         <Button x:Name="DodajNotowanieButton" Content="Dodaj Notowanie" HorizontalAlignment="Left" Margin="124,10,0,0" VerticalAlignment="Top" Click="DodajNotowanieOpenWindow"/>
         <DataGrid x:Name="DataGridMain"  Margin="0,91,0,0" ItemsSource="{Binding }" CanUserAddRows="False" ColumnWidth="*"/>
+        <Button x:Name="ZaladujAktywaButton" Content="ZaladujAktywa" HorizontalAlignment="Left" Margin="702,30,0,0" VerticalAlignment="Top" Click="ZaladujAktywaButton_Click"/>
 
     </Grid>
 </Window>
